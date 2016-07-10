@@ -1,11 +1,22 @@
 angular
-  .module("stoplight", [])
-  .controller("stoplightController", [stopLightController])
+  .module("stoplight", ["ui.router"])
+  .config(["$stateProvider", Router])
+  .controller("stoplightController", ["$state", "$stateParams", stopLightController])
 
-function stopLightController(){
+function Router($stateProvider){
+  $stateProvider
+  .state("color",{
+    url:'/:color',
+    controller: 'stoplightController',
+    controllerAs: 'vm'
+  })
+}
+
+function stopLightController($state, $stateParams){
   this.colors = ['red', 'yellow','green']
+  this.bg = $stateParams.color
   this.turn = function(color){
     this.bg = color
-    return true
+    $state.go("color",{color: color})
   }
 }
