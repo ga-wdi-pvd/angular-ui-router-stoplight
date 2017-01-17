@@ -1,6 +1,8 @@
+(function(){
 angular
-  .module("stoplight", [])
-  .controller("stoplightController", [stopLightController])
+  .module("stopLightApp", [])
+  .controller("stopLightController", [stopLightController])
+
 
 function stopLightController(){
   this.colors = ['red', 'yellow','green']
@@ -8,3 +10,4 @@ function stopLightController(){
     this.bg = color
   }
 }
+})();
